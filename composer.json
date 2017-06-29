@@ -1,0 +1,22 @@
+{
+    "name": "q-alliance/qsendgrid",
+    "description": "Simple to use mailer with Sendgrid in the backgroundd",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Vicko Franić",
+            "email": "vicko@q-alliance.com"
+        }
+    ],
+    "require": {
+        "sendgrid/sendgrid": "^5.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "QAlliance\\": "src/"
+        }
+    }
+}

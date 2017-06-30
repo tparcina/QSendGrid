@@ -32,7 +32,7 @@ use QAlliance\QSendgrid;
 $qs = new QSendgrid('NO_REPLY_EMAIL', 'SENDGRID_API_KEY');
 
 // Send email to given address with given subject and content, returns bool
-$result = qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email.');
+$result = qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email.</h1>');
 ```
 
 #### Sending html email with attachments:
@@ -51,7 +51,7 @@ $attachmentUrls = [
 $qs = new QSendgrid('NO_REPLY_EMAIL', 'SENDGRID_API_KEY');
 
 // Send email to given address with given subject and content, returns bool
-$result = qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email with attachments.', $attachmentUrls);
+$result = qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email with attachments.</h1>', $attachmentUrls);
 ```
 
 ## Running the tests

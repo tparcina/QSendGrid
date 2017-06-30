@@ -16,7 +16,7 @@ You will need to provide:
 Install QSendgrid with composer:
 
 ```
-composer require q-alliance/qsendgrid
+composer require q-alliance/qsendgrid @dev
 ```
 
 ## Basic usage

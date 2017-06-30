@@ -48,7 +48,7 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
-		$result = $qSendgrid->sendWithAttachments($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email.", $attachmentUrls);
+		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email.", $attachmentUrls);
 
 		$this->assertTrue($result);
 	} 

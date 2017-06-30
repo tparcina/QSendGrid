@@ -1,5 +1,6 @@
 {
     "name": "q-alliance/qsendgrid",
+    "minimum-stability": "dev",
     "description": "Simple to use mailer, with Sendgrid in the background",
     "type": "library",
     "authors": [

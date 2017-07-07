@@ -40,7 +40,8 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 	public function testQSendgridSendEmailWithAttachmentFunctionality()
 	{
 		$attachmentUrls = [
-			'./src/attachments/sample.jpg'
+			'./src/attachments/sample1.jpg',
+			'./src/attachments/sample2.jpg'
 		];
 
 		foreach ($attachmentUrls as $url) {
@@ -48,7 +49,7 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
-		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email.", $attachmentUrls);
+		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email with attachments.", $attachmentUrls);
 
 		$this->assertTrue($result);
 	} 

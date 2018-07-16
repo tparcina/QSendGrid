@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * This file is part of QAlliance.
@@ -18,8 +18,8 @@ use SendGrid\Response;
 
 class QSendgrid {
 
-	private $noReplyEmail;
-	private $sendgrid;
+    private $noReplyEmail;
+    private $sendgrid;
 
     /**
      * Constructor
@@ -28,10 +28,10 @@ class QSendgrid {
      * @param string $sendgridApiKey Sendgrid API key
      * @throws \Exception
      */
-	public function __construct($noReplyEmail = '', $sendgridApiKey = '')
-	{
-		$this->setup($noReplyEmail, $sendgridApiKey);
-	}
+    public function __construct($noReplyEmail = '', $sendgridApiKey = '')
+    {
+        $this->setup($noReplyEmail, $sendgridApiKey);
+    }
 
     /**
      * Setup QSendgrid
@@ -41,15 +41,15 @@ class QSendgrid {
      * @return void
      * @throws \Exception
      */
-	private function setup($noReplyEmail, $sendgridApiKey)
-	{
-		if ('' === $noReplyEmail || '' === $sendgridApiKey) {
-			throw new \RuntimeException('No reply email or Sendgrid API key is missing');
-		}
+    private function setup($noReplyEmail, $sendgridApiKey)
+    {
+        if ('' === $noReplyEmail || '' === $sendgridApiKey) {
+            throw new \RuntimeException('No reply email or Sendgrid API key is missing');
+        }
 
-		$this->noReplyEmail = $noReplyEmail;
-		$this->sendgrid = new Sendgrid($sendgridApiKey);
-	}
+        $this->noReplyEmail = $noReplyEmail;
+        $this->sendgrid = new Sendgrid($sendgridApiKey);
+    }
 
     /**
      * Send email with or without attachments
@@ -60,42 +60,43 @@ class QSendgrid {
      * @param null $attachmentsFilePath
      * @return bool
      */
-	public function send($to, $subject, $content, $attachmentsFilePath = null): bool
+    public function send($to, $subject, $content, $attachmentsFilePath = null)
     {
-		if (!$to || !$subject || !$content) {
-			throw new \RuntimeException('To email address, subject, or content is missing');
-		}
+        if (!$to || !$subject || !$content) {
+            throw new \RuntimeException('To email address, subject, or content is missing');
+        }
 
-		if ($attachmentsFilePath !== null && !\is_array($attachmentsFilePath)) {
-			throw new \RuntimeException('Attachments must be an array of strings (paths to the attachement files)');
-		}
+        if ($attachmentsFilePath !== null && !\is_array($attachmentsFilePath)) {
+            throw new \RuntimeException('Attachments must be an array of strings (paths to the attachement files)');
+        }
 
-		$from = new Email(null, $this->noReplyEmail);
-		$to = new Email(null, $to);
-		$content = new Content("text/html", $content);
-		$mail = new Mail($from, $subject, $to, $content);
+        $from = new Email(null, $this->noReplyEmail);
+        $to = new Email(null, $to);
+        $content = new Content("text/html", $content);
+        $mail = new Mail($from, $subject, $to, $content);
 
-		if ($attachmentsFilePath !== null) {
-			foreach ($attachmentsFilePath as $path) {
+        if ($attachmentsFilePath !== null) {
+            foreach ($attachmentsFilePath as $path) {
 
-				if (! file_exists($path)) {
-					throw new \RuntimeException("File in path '" . $path . "' does not exist");
-				}
+                if (! file_exists($path)) {
+                    throw new \RuntimeException("File in path '" . $path . "' does not exist");
+                }
 
-		        $attachment = new Attachment();
-		        $attachment->setContent(base64_encode(file_get_contents($path)));
-		        $attachment->setFilename(basename($path));
-		        $attachment->setDisposition('attachment');
-		        $mail->addAttachment($attachment);
-			}
-		}
+                $attachment = new Attachment();
+                $attachment->setContent(base64_encode(file_get_contents($path)));
+                $attachment->setFilename(basename($path));
+                $attachment->setDisposition('attachment');
+                $mail->addAttachment($attachment);
+            }
+        }
 
         /** @var Response $response */
         $response = $this->sendgrid->client->mail()->send()->post($mail);
 
-		if ($response->statusCode() >= 200 && $response->statusCode() < 300) {
-			return true;
-		}
-		return false;
-	}
+        if ($response->statusCode() >= 200 && $response->statusCode() < 300) {
+            return true;
+        }
+
+        return false;
+    }
 }

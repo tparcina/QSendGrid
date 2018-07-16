@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c32d68c-7e20-491e-8488-2047b22bc065" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/QSendgrid.php" afterPath="$PROJECT_DIR$/src/QSendgrid.php" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/BadRequestException.php" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,10 +25,10 @@
       <file leaf-file-name="QSendgrid.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/QSendgrid.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
+            <state relative-caret-position="1004">
+              <caret line="101" column="1" lean-forward="false" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
               <folding>
-                <element signature="e#121#146#0#PHP" expanded="true" />
+                <element signature="e#120#145#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,12 +174,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1531739314015</updated>
-      <workItem from="1531739315655" duration="1542000" />
+      <workItem from="1531739315655" duration="2183000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1542000" />
+    <option name="totallyTimeSpent" value="2183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-61" width="1920" height="974" extended-state="0" />
@@ -227,10 +226,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/QSendgrid.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
+        <state relative-caret-position="1004">
+          <caret line="101" column="1" lean-forward="false" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
           <folding>
-            <element signature="e#121#146#0#PHP" expanded="true" />
+            <element signature="e#120#145#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

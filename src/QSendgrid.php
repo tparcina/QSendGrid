@@ -60,7 +60,7 @@ class QSendgrid {
      * @param null $attachmentsFilePath
      * @return bool
      */
-    public function send($to, $subject, $content, $attachmentsFilePath = null)
+    public function send($to, $subject, $content, $attachmentsFilePath = null, $fromName = 'No Reply')
     {
         if (!$to || !$subject || !$content) {
             throw new \RuntimeException('To email address, subject, or content is missing');
@@ -70,7 +70,7 @@ class QSendgrid {
             throw new \RuntimeException('Attachments must be an array of strings (paths to the attachement files)');
         }
 
-        $from = new Email(null, $this->noReplyEmail);
+        $from = new Email($fromName, $this->noReplyEmail);
         $to = new Email(null, $to);
         $content = new Content("text/html", $content);
         $mail = new Mail($from, $subject, $to, $content);

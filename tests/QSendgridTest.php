@@ -32,7 +32,7 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 	public function testQSendgridSendEmailFunctionality()
 	{
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
-		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email.");
+		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email.", null, 'QSendgrid Test Mail');
 
 		$this->assertTrue($result);
 	}
@@ -49,7 +49,7 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
-		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email with attachments.", $attachmentUrls);
+		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email with attachments.", $attachmentUrls, 'QSendgrid Test Mail');
 
 		$this->assertTrue($result);
 	} 

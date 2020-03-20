@@ -14,29 +14,46 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 		global $noReplyEmail;
 		global $toEmail;
 
-		$this->assertGreaterThan(0, strlen($sendgridApiKey), "Sendgrid API key must be set");
-		$this->assertGreaterThan(0, strlen($noReplyEmail), "No reply email must be set");
-		$this->assertGreaterThan(0, strlen($toEmail), "Send to email adress must be set");
+		$this->assertGreaterThan(0, strlen($sendgridApiKey), 'Sendgrid API key must be set');
+		$this->assertGreaterThan(0, strlen($noReplyEmail), 'No reply email must be set');
+		$this->assertGreaterThan(0, strlen($toEmail), 'Send to email address must be set');
 
 		$this->sendgridApiKey = $sendgridApiKey;
 		$this->noReplyEmail = $noReplyEmail;
 		$this->toEmail = $toEmail;
 	}
 
-	public function testQSendgridSetup()
+    /**
+     * Test setup
+     *
+     * @throws Exception
+     */
+    public function testQSendgridSetup()
 	{
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
+
 		$this->assertInstanceOf(QSendgrid::class, $qSendgrid);
 	}
 
-	public function testQSendgridSendEmailFunctionality()
+    /**
+     * Test basic email
+     *
+     * @throws Exception
+     */
+    public function testQSendgridSendEmailFunctionality()
 	{
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
-		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email.", null, 'QSendgrid Test Mail');
+
+		$result = $qSendgrid->send($this->toEmail, 'QSendgrid Testing', '<h1>This is a QSendgrid test email.</h1>', null, 'QSendgrid Test Mail');
 
 		$this->assertTrue($result);
 	}
 
+    /**
+     * Test mail with attachments
+     *
+     * @throws Exception
+     */
 	public function testQSendgridSendEmailWithAttachmentFunctionality()
 	{
 		$attachmentUrls = [
@@ -49,7 +66,7 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
-		$result = $qSendgrid->send($this->toEmail, "QSendgrid Testing", "<h1>This is a QSendgrid test email with attachments.", $attachmentUrls, 'QSendgrid Test Mail');
+		$result = $qSendgrid->send($this->toEmail, 'QSendgrid Testing', '<h1>This is a QSendgrid test email with attachments.</h1>', $attachmentUrls, 'QSendgrid Test Mail With Attachments');
 
 		$this->assertTrue($result);
 	} 

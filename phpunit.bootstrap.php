@@ -10,6 +10,6 @@
  * 		'vendor/bin/phpunit --bootstrap phpunit.bootstrap.php'
  * 
  */
-$sendgridApiKey = "";
-$noReplyEmail 	= "";
-$toEmail 		= "";
+$sendgridApiKey = '';
+$noReplyEmail 	= 'noreply@qsendgrid.loc';
+$toEmail 		= '';

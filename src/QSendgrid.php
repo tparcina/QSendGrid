@@ -54,29 +54,36 @@ class QSendgrid {
     /**
      * Send email with or without attachments
      *
-     * @param  string $to
+     * @param $toMail
      * @param  string $subject
-     * @param  string $content
-     * @param null $attachmentsFilePath
+     * @param $mailContent
+     * @param null $attachments
+     * @param string $fromName
      * @return bool
      */
-    public function send($to, $subject, $content, $attachmentsFilePath = null, $fromName = 'No Reply')
+    public function send($toMail, $subject, $mailContent, $attachments = null, $fromName = 'No Reply'): bool
     {
-        if (!$to || !$subject || !$content) {
+        if (!$toMail || !$subject || !$mailContent) {
             throw new \RuntimeException('To email address, subject, or content is missing');
         }
 
-        if ($attachmentsFilePath !== null && !\is_array($attachmentsFilePath)) {
-            throw new \RuntimeException('Attachments must be an array of strings (paths to the attachement files)');
+        if ($attachments !== null && !\is_array($attachments)) {
+            throw new \RuntimeException('Attachments must be an array of strings (paths to the attachments files)');
         }
 
         $from = new Email($fromName, $this->noReplyEmail);
-        $to = new Email(null, $to);
-        $content = new Content("text/html", $content);
+
+        $to = new Email(null, $toMail);
+
+        $content = new Content('text/html', $mailContent);
+
         $mail = new Mail($from, $subject, $to, $content);
 
-        if ($attachmentsFilePath !== null) {
-            foreach ($attachmentsFilePath as $path) {
+        /**
+         * Build attachments
+         */
+        if ($attachments !== null) {
+            foreach ($attachments as $path) {
 
                 if (! file_exists($path)) {
                     throw new \RuntimeException("File in path '" . $path . "' does not exist");
@@ -93,10 +100,6 @@ class QSendgrid {
         /** @var Response $response */
         $response = $this->sendgrid->client->mail()->send()->post($mail);
 
-        if ($response->statusCode() >= 200 && $response->statusCode() < 300) {
-            return true;
-        }
-
-        return false;
+        return $response->statusCode() >= 200 && $response->statusCode() < 300;
     }
 }

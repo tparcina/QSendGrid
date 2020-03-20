@@ -35,6 +35,12 @@ $qs = new QSendgrid('NO_REPLY_EMAIL', 'SENDGRID_API_KEY');
 $result = $qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email.</h1>');
 ```
 
+#### Sending html email with fromName parameter
+```
+// Send email to given address with given subject, content and fromName, returns bool
+$result = $qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email.</h1>', null, 'From Name');
+```
+
 #### Sending html email with attachments:
 
 ```php
@@ -64,5 +70,4 @@ Run tests with this command:
 ```
 
 ## Authors
-
-* *Vicko Franic* - *Initial work* - [Github](https://github.com/vickofranic)
+* *Vicko Franic* - [Github](https://github.com/vickofranic)

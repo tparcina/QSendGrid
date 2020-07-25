@@ -62,7 +62,7 @@ $result = $qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid tes
 
 #### Sending email with both html and text/plain content
 ```
-// Send email to given address with given subject, content and fromName, returns bool
+// Send email with both html and text/plain content, returns bool
 $result = $qSendgrid->sendWithTextPlain('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email with plain text.</h1>', 'This is a QSendgrid test email with plain text', null, 'From Name');
 ```
 

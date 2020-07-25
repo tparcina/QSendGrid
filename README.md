@@ -60,6 +60,12 @@ $qs = new QSendgrid('NO_REPLY_EMAIL', 'SENDGRID_API_KEY');
 $result = $qs->send('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email with attachments.</h1>', $attachmentUrls);
 ```
 
+#### Sending email with both html and text/plain content
+```
+// Send email to given address with given subject, content and fromName, returns bool
+$result = $qSendgrid->sendWithTextPlain('to@example.com', 'My Subject', '<h1>This is a QSendgrid test email with plain text.</h1>', 'This is a QSendgrid test email with plain text', null, 'From Name');
+```
+
 ## Running the tests
 
 Edit PHPUnit bootstrap file (**phpunit.bootstrap.php**) and add required values.

@@ -69,6 +69,19 @@ class QSendgridTest extends PHPUnit_Framework_TestCase {
 		$result = $qSendgrid->send($this->toEmail, 'QSendgrid Testing', '<h1>This is a QSendgrid test email with attachments.</h1>', $attachmentUrls, 'QSendgrid Test Mail With Attachments');
 
 		$this->assertTrue($result);
-	} 
+	}
 
+    /**
+     * Test basic email with plain text content
+     *
+     * @throws Exception
+     */
+    public function testQSendgridSendEmailWithPlainTextContentFunctionality()
+    {
+        $qSendgrid = new QSendgrid($this->noReplyEmail, $this->sendgridApiKey);
+
+        $result = $qSendgrid->sendWithTextPlain($this->toEmail, 'QSendgrid Testing', '<h1>This is a QSendgrid test email with plain text.</h1>', 'This is a QSendgrid test email with plain text', null, 'QSendgrid Test Mail');
+
+        $this->assertTrue($result);
+    }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "q-alliance/qsendgrid",
+    "name": "tparcina/qsendgrid",
     "minimum-stability": "dev",
     "description": "Simple to use mailer, with Sendgrid in the background",
     "type": "library",

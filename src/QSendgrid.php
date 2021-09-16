@@ -83,7 +83,7 @@ class QSendgrid {
          * Build attachments
          */
         if ($attachments !== null) {
-            foreach ($attachments as $path) {
+            foreach ($attachments as $fileName => $path) {
 
                 if (! file_exists($path)) {
                     throw new \RuntimeException("File in path '" . $path . "' does not exist");
@@ -91,7 +91,7 @@ class QSendgrid {
 
                 $attachment = new Attachment();
                 $attachment->setContent(base64_encode(file_get_contents($path)));
-                $attachment->setFilename(basename($path));
+                $attachment->setFilename(basename($fileName));
                 $attachment->setDisposition('attachment');
                 $mail->addAttachment($attachment);
             }
